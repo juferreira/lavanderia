@@ -4,8 +4,8 @@ from django.utils import timezone
 
 class Apartamento(models.Model):
     unidade = models.IntegerField(primary_key=True)
-    morador = models.ForeignKey(Morador)
-
+    morador = CharField(max_length=200,blank=True)
+    
     def __str__(self):
            return str(self.unidade)
 
@@ -35,4 +35,4 @@ class Reserva(models.Model):
     data_criacao_reserva = models.DateTimeField(
             default=timezone.now)
     class meta:
-        unique_together = (('data_uso_maquina','apartamento_responsavel','maquina'),) 
+        unique_together = (('self.data_uso_maquina','self.apartamento_responsavel','self.maquina'),) 
